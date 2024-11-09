@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 
 /**
@@ -101,7 +102,7 @@ public class AddDataFragment extends Fragment {
         location1 = location.getText().toString();
         specialty1 = specialty.getText().toString();
         if (name1.isEmpty() || id1.isEmpty() || location1.isEmpty() || specialty1.isEmpty()) {
-            Toast.makeText(getActivity(), "something is wrong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), " something is wrong", Toast.LENGTH_SHORT).show();
             return;
         }
         Doctor doctor = new Doctor(id1, name1, location1, specialty1);
@@ -109,17 +110,12 @@ public class AddDataFragment extends Fragment {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getActivity(), "success to add", Toast.LENGTH_SHORT).show();
-                return;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "something is wrong", Toast.LENGTH_SHORT).show();
-                return;
             }
         });
-
-
-
     }
 }
